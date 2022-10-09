@@ -1,9 +1,12 @@
 import { plantList } from "../datas/plantList";
+import { useState } from "react";
 import "../styles/ShoppingList.css";
-import CareScale from "../components/CareScale";
+import PlantItem from "./PlantItem";
+import Categories from "./Categories";
 
-function ShoppingList() {
+function ShoppingList({ updateCart, cart }) {
   const categories = [];
+  const [catState, setCatState] = useState("");
   let cat = "";
   plantList.forEach((plant) => {
     if (plant.category !== cat) {
@@ -12,27 +15,59 @@ function ShoppingList() {
     }
   });
 
+  function addToCart(name, price) {
+    const currentPlantAdded = cart.find((plant) => plant.name === name);
+    if (currentPlantAdded) {
+      const cartFilteredCurrentPlant = cart.filter(
+        (plant) => plant.name !== name
+      );
+      updateCart([
+        ...cartFilteredCurrentPlant,
+        { name, price, amount: currentPlantAdded.amount + 1 },
+      ]);
+    } else {
+      updateCart([...cart, { name, price, amount: 1 }]);
+    }
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }
+
   return (
     <div>
-      <ul>
-        {categories.map((element, index) => (
-          <li key={`${element}-${index}`}>{element}</li>
-        ))}
-      </ul>
+      <Categories categories={categories} setCatState={setCatState} />
       <ul className="lmj-plant-list">
-        {plantList.map((plant) => (
-          <li key={`${plant.name}-${plant.id}`} className="lmj-plant-item">
-            {plant.name}
-            {plant.isBestSale && <span>🚀</span>}
-            {plant.isSpecialOffer && (
-              <div className="lmj-sales">
-                Offre speciale !! à vos portefeuilles !!
+        {plantList.map((plant) =>
+          catState === "" ? (
+            <div key={plant.id}>
+              <PlantItem
+                name={plant.name}
+                id={plant.id}
+                cover={plant.cover}
+                light={plant.light}
+                wather={plant.wather}
+                price={plant.price}
+              />
+              <button onClick={() => addToCart(plant.name, plant.price)}>
+                Ajouter
+              </button>
+            </div>
+          ) : (
+            plant.category === catState && (
+              <div key={plant.id}>
+                <PlantItem
+                  name={plant.name}
+                  id={plant.id}
+                  cover={plant.cover}
+                  light={plant.light}
+                  wather={plant.wather}
+                  price={plant.price}
+                />
+                <button onClick={() => addToCart(plant.name, plant.price)}>
+                  Ajouter
+                </button>
               </div>
-            )}
-            <CareScale careType="light" scaleValue={plant.light} />
-            <CareScale careType="wather" scaleValue={plant.wather} />
-          </li>
-        ))}
+            )
+          )
+        )}
       </ul>
     </div>
   );

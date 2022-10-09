@@ -1,3 +1,13 @@
+import monstera from "../assets/monstera.jpg";
+import ficus from "../assets/ficus.jpeg";
+import pothos from "../assets/pothos.jpeg";
+import aloe from "../assets/aloe.jpeg";
+import basilic from "../assets/basilic.jpeg";
+import geranium from "../assets/geranium.jpeg";
+import olivier from "../assets/olivier.jpeg";
+import succulente from "../assets/succulente.png";
+import yucca from "../assets/yucca.jpeg";
+
 export const plantList = [
   {
     name: "monstera",
@@ -5,8 +15,10 @@ export const plantList = [
     id: "1ed",
     isBestSale: true,
     isSpecialOffer: true,
-    wather: 1,
+    wather: 3,
     light: 2,
+    cover: monstera,
+    price: 15,
   },
   {
     name: "ficus lyrata",
@@ -14,8 +26,10 @@ export const plantList = [
     id: "2ab",
     isBestSale: false,
     isSpecialOffer: false,
-    wather: 3,
-    light: 2,
+    wather: 1,
+    light: 3,
+    cover: ficus,
+    price: 16,
   },
   {
     name: "pothos argenté",
@@ -24,7 +38,9 @@ export const plantList = [
     isBestSale: false,
     isSpecialOffer: false,
     wather: 2,
-    light: 3,
+    light: 1,
+    cover: pothos,
+    price: 9,
   },
   {
     name: "yucca",
@@ -33,7 +49,9 @@ export const plantList = [
     isBestSale: false,
     isSpecialOffer: true,
     wather: 1,
-    light: 1,
+    light: 3,
+    cover: yucca,
+    price: 20,
   },
   {
     name: "olivier",
@@ -41,8 +59,10 @@ export const plantList = [
     id: "5pl",
     isBestSale: false,
     isSpecialOffer: false,
-    wather: 3,
-    light: 1,
+    wather: 1,
+    light: 3,
+    cover: olivier,
+    price: 25,
   },
   {
     name: "géranium",
@@ -51,7 +71,9 @@ export const plantList = [
     isBestSale: false,
     isSpecialOffer: false,
     wather: 2,
-    light: 3,
+    light: 2,
+    cover: geranium,
+    price: 13,
   },
   {
     name: "basilique",
@@ -60,7 +82,9 @@ export const plantList = [
     isBestSale: true,
     isSpecialOffer: false,
     wather: 3,
-    light: 3,
+    light: 2,
+    cover: basilic,
+    price: 6,
   },
   {
     name: "aloe",
@@ -69,7 +93,9 @@ export const plantList = [
     isBestSale: false,
     isSpecialOffer: false,
     wather: 1,
-    light: 3,
+    light: 2,
+    cover: aloe,
+    price: 21,
   },
   {
     name: "succulente",
@@ -77,7 +103,9 @@ export const plantList = [
     id: "9vn",
     isBestSale: false,
     isSpecialOffer: true,
-    wather: 2,
-    light: 1,
+    wather: 1,
+    light: 2,
+    cover: succulente,
+    price: 11,
   },
 ];
